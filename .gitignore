@@ -1,0 +1,22 @@
+# editor / OS
+*~
+*.swp
+.DS_Store
+
+# caches
+.cache/
+**/cache/
+**/Cache/
+
+# runtime
+*.log
+*.pid
+*.sock
+
+# secrets (防止手滑)
+*.key
+*.pem
+*.token
+*.secret
+.env
+
