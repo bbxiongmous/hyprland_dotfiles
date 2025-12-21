@@ -78,6 +78,7 @@ button:hover {
 #battery,
 #cpu,
 #memory,
+#disk,
 #temperature,
 #backlight,
 #network,
@@ -100,6 +101,7 @@ button:hover {
 #battery:hover,
 #cpu:hover,
 #memory:hover,
+#disk:hover,
 #temperature:hover,
 #backlight:hover,
 #network:hover,
@@ -130,6 +132,15 @@ button:hover {
 #battery.critical:not(.charging) {
     background-color: rgba(245, 60, 60, 0.22);
     animation: none;
+}
+
+/* Disk (matches your existing palette) */
+#disk.warning {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+#disk.critical {
+    background-color: rgba(245, 60, 60, 0.22);
 }
 
 /* Audio muted (speaker or mic) */

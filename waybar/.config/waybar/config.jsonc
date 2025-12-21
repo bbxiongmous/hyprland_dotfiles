@@ -15,22 +15,14 @@
 
   "modules-right": [
     "idle_inhibitor",
-    "power-profiles-daemon",
-
     "pulseaudio",
-    "network",
-
+//    "network",
     "cpu",
     "memory",
+    "disk",
     "temperature",
     "backlight",
-
-    "keyboard-state",
-//    "hyprland/language",
-
     "battery",
-    "battery#bat2",
-
     "tray",
     "clock",
     "custom/power"
@@ -41,25 +33,11 @@
     "disable-scroll": true,
     "all-outputs": true,
     "warp-on-scroll": false,
-
-    // 关键：去掉冒号后的空格，避免 “1:  o” 这种拉开
     "format": "{name}:{icon}",
-
     "format-icons": {
       "urgent": "󰀪",
       "active": "󰄯",
       "default": "󰄰"
-    }
-  },
-
-  /* ---------------- Keyboard ---------------- */
-  "keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": "{name} {icon}",
-    "format-icons": {
-      "locked": "󰌾",
-      "unlocked": "󰌿"
     }
   },
 
@@ -72,7 +50,7 @@
     }
   },
 
-  /* ---------------- Tray / Clock ---------------- */
+  /* ---------------- Tray ---------------- */
   "tray": {
     "spacing": 8
   },
@@ -93,6 +71,16 @@
     "format": "{}% 󰾆",
     "tooltip": false
   },
+  /* ---------------- Disk ----------------- */
+  "disk": {
+  "path": "/",
+  "interval": 30,
+  "format": "󰋊 {percentage_used}%",
+  "tooltip-format": "Disk (/): {used}/{total}\nFree: {free}",
+  "warning": 80,
+  "critical": 90
+},
+
 
   /* ---------------- Temperature / Backlight ---------------- */
   "temperature": {
@@ -117,24 +105,7 @@
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽"]
   },
 
-  "battery#bat2": {
-    "bat": "BAT2"
-  },
-
-  /* ---------------- Power Profile ---------------- */
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip": true,
-    "tooltip-format": "Power profile: {profile}",
-    "format-icons": {
-      "default": "󱐋",
-      "performance": "󱐋",
-      "balanced": "󰾅",
-      "power-saver": "󰌪"
-    }
-  },
-
-  /* ---------------- Network (no interface names) ---------------- */
+  /* ---------------- Network ---------------- */
   "network": {
     "format-wifi": "{signalStrength}% 󰖩",
     "format-ethernet": "{ipaddr} 󰈀",
@@ -143,14 +114,12 @@
     "tooltip": false
   },
 
-  /* ---------------- Audio: Speaker + Mic ---------------- */
+  /* ---------------- Audio ---------------- */
   "pulseaudio": {
     "format": "{volume}% {icon} {format_source}",
     "format-muted": "󰖁 {format_source}",
-
     "format-source": "{volume}% 󰍬",
     "format-source-muted": "󰍭",
-
     "format-icons": {
       "headphone": "󰋋",
       "hands-free": "󰋎",
@@ -160,7 +129,6 @@
       "car": "󰄋",
       "default": ["󰕿", "󰖀", "󰕾"]
     },
-
     "on-click": "pavucontrol"
   },
 
@@ -178,4 +146,3 @@
     }
   }
 }
-
