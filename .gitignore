@@ -20,3 +20,4 @@
 *.secret
 .env
 
+mpd/.config/mpd/log
