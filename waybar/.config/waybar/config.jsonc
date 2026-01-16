@@ -23,8 +23,8 @@
     "temperature",
     "backlight",
     "battery",
-    "tray",
     "clock",
+    "tray",
     "custom/power"
   ],
 
