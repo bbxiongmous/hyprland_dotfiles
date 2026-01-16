@@ -5,6 +5,9 @@
 * {
     font-family:
         "JetBrainsMono Nerd Font Mono",
+/*        "Hack Nerd Font",
+        "Hack Nerd Font Mono",
+        "Symbols Nerd Font", */
         sans-serif;
     font-size: 15px;
 }
@@ -30,19 +33,22 @@ button:hover {
 
 /* ---------------- Workspaces (tight) ---------------- */
 
+/* 可选：让 workspaces 本体别额外占空间 */
 #workspaces {
     margin: 0 2px;
 }
 
+/* 关键：压缩 workspace 按钮自身的横向占用 */
 #workspaces button {
-    min-width: 0;
-    padding: 0 4px;
-    margin: 0;
+    min-width: 0;          /* 允许收缩（非常关键） */
+    padding: 0 4px;        /* 比原来更紧凑：6px -> 4px */
+    margin: 0;             /* 去掉按钮间额外空隙 */
 
     color: rgba(255, 255, 255, 0.80);
     border-radius: 7px;
 }
 
+/* 关键：清掉 label 的默认 padding（常见导致“看起来很松”的原因） */
 #workspaces button > label {
     padding: 0;
     margin: 0;
@@ -89,14 +95,14 @@ button:hover {
     border-radius: 7px;
     background-color: transparent;
     color: rgba(255, 255, 255, 0.92);
-
-    /* Smooth hover interaction */
-    transition: background-color 120ms ease, color 120ms ease;
 }
 
-/* Hover (global) */
+/* Hover */
 #clock:hover,
 #battery:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
 #temperature:hover,
 #backlight:hover,
 #network:hover,
@@ -108,21 +114,6 @@ button:hover {
 #keyboard-state:hover,
 #custom-power:hover {
     background-color: rgba(255, 255, 255, 0.06);
-}
-
-/* Hover (CPU / Memory / Disk) — stronger + “actionable” feel */
-#cpu:hover,
-#memory:hover,
-#disk:hover {
-    background-color: rgba(255, 255, 255, 0.10);
-    color: rgba(255, 255, 255, 0.98);
-}
-
-/* Optional: subtle pressed feedback (click) */
-#cpu:active,
-#memory:active,
-#disk:active {
-    background-color: rgba(255, 255, 255, 0.14);
 }
 
 /* ---------------- Semantic states ---------------- */
