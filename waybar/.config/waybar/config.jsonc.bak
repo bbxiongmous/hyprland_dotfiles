@@ -2,7 +2,7 @@
 {
   "layer": "top",
   "position": "bottom",
-  "height": 30,
+  "height": 32,
   "spacing": 2,
 
   "modules-left": [
@@ -16,7 +16,7 @@
   "modules-right": [
     "idle_inhibitor",
     "pulseaudio",
-//    "network",
+    // "network",
     "cpu",
     "memory",
     "disk",
@@ -61,26 +61,35 @@
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
 
-  /* ---------------- CPU / Memory ---------------- */
+  /* ---------------- CPU / Memory ----------------
+     Icons changed + hover tooltips enabled
+  */
   "cpu": {
-    "format": "{usage}% 󰍛",
-    "tooltip": false
+    "interval": 2,
+    "format": "  {usage}%",
+    "tooltip": true,
+    "tooltip-format": "CPU: {usage}%\nLoad: {load}\nCores: {cores}"
   },
 
   "memory": {
-    "format": "{}% 󰾆",
-    "tooltip": false
+    "interval": 5,
+    "format": "󰘚  {percentage}%",
+    "tooltip": true,
+    "tooltip-format": "RAM: {percentage}%\nUsed: {used:0.1f}GiB / {total:0.1f}GiB\nAvailable: {avail:0.1f}GiB"
   },
-  /* ---------------- Disk ----------------- */
-  "disk": {
-  "path": "/",
-  "interval": 30,
-  "format": "󰋊 {percentage_used}%",
-  "tooltip-format": "Disk (/): {used}/{total}\nFree: {free}",
-  "warning": 80,
-  "critical": 90
-},
 
+  /* ---------------- Disk ----------------
+     Icon changed + tooltip retained/enhanced
+  */
+  "disk": {
+    "path": "/",
+    "interval": 30,
+    "format": "  {percentage_used}%",
+    "tooltip": true,
+    "tooltip-format": "Disk (/): {percentage_used}%\nUsed: {used} / {total}\nFree: {free}",
+    "warning": 80,
+    "critical": 90
+  },
 
   /* ---------------- Temperature / Backlight ---------------- */
   "temperature": {
@@ -146,3 +155,4 @@
     }
   }
 }
+

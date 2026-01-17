@@ -16,7 +16,6 @@
   "modules-right": [
     "idle_inhibitor",
     "pulseaudio",
-    // "network",
     "cpu",
     "memory",
     "disk",
@@ -55,49 +54,48 @@
     "spacing": 8
   },
 
+  /* ---------------- Clock ---------------- */
   "clock": {
     "format": "{:%H:%M}",
     "format-alt": "{:%Y-%m-%d}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
 
-  /* ---------------- CPU / Memory ----------------
-     Icons changed + hover tooltips enabled
-  */
+  /* ---------------- CPU ---------------- */
   "cpu": {
     "interval": 2,
-    "format": " {usage}%",
+    "format": "{usage}% ",
     "tooltip": true,
     "tooltip-format": "CPU: {usage}%\nLoad: {load}\nCores: {cores}"
   },
 
+  /* ---------------- Memory ---------------- */
   "memory": {
     "interval": 5,
-    "format": "󰘚 {percentage}%",
+    "format": "{percentage}% 󰘚",
     "tooltip": true,
     "tooltip-format": "RAM: {percentage}%\nUsed: {used:0.1f}GiB / {total:0.1f}GiB\nAvailable: {avail:0.1f}GiB"
   },
 
-  /* ---------------- Disk ----------------
-     Icon changed + tooltip retained/enhanced
-  */
+  /* ---------------- Disk ---------------- */
   "disk": {
     "path": "/",
     "interval": 30,
-    "format": " {percentage_used}%",
+    "format": "{percentage_used}% ",
     "tooltip": true,
     "tooltip-format": "Disk (/): {percentage_used}%\nUsed: {used} / {total}\nFree: {free}",
     "warning": 80,
     "critical": 90
   },
 
-  /* ---------------- Temperature / Backlight ---------------- */
+  /* ---------------- Temperature ---------------- */
   "temperature": {
     "critical-threshold": 80,
     "format": "{temperatureC}°C 󰔏",
     "format-critical": "{temperatureC}°C 󰸁"
   },
 
+  /* ---------------- Backlight ---------------- */
   "backlight": {
     "format": "{percent}% 󰃟"
   },
@@ -112,15 +110,6 @@
     "format-charging": "{capacity}% 󰂄",
     "format-plugged": "{capacity}% 󰚥",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽"]
-  },
-
-  /* ---------------- Network ---------------- */
-  "network": {
-    "format-wifi": "{signalStrength}% 󰖩",
-    "format-ethernet": "{ipaddr} 󰈀",
-    "format-linked": "Link 󰈀",
-    "format-disconnected": "No Net 󰖪",
-    "tooltip": false
   },
 
   /* ---------------- Audio ---------------- */
