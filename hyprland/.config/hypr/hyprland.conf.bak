@@ -110,10 +110,10 @@ workspace = w[tv1], gapsout:0, gapsin:0
 workspace = 1, gapsout:0, gapsin:0
 
 # Fixed workspace window rules (v2 syntax)
-windowrule = match:workspace w[tv1], border_size 0
-windowrule = match:workspace w[tv1], rounding 0
-windowrule = match:workspace 1, border_size 0
-windowrule = match:workspace 1, rounding 0
+windowrulev2 = bordersize 0, workspace:^w\[tv1\]$
+windowrulev2 = rounding 0,   workspace:^w\[tv1\]$
+windowrulev2 = bordersize 0, workspace:^1$
+windowrulev2 = rounding 0,   workspace:^1$
 
 
 ########################
@@ -241,21 +241,21 @@ bindl = , XF86AudioPrev, exec, playerctl previous
 ##############################
 
 # Restore your pre-upgrade behavior: ignore maximize requests from apps
-windowrule = match:class .*, suppress_event maximize
+windowrulev2 = suppressevent maximize, class:.*
 
 # TUIs (kitty --class tui-app): float + size + center
 #windowrulev2 = float, class:^(tui-app)$
-## (merged into rule below)
+#windowrulev2 = size 1200 750, class:^(tui-app)$
 #windowrulev2 = center, class:^(tui-app)$
 # TUIs launched via shortcuts: float + size + center (match by title)
-# (merged into rule below)
-# (merged into rule below)
-windowrule = match:class ^(tui-app)$, float on, size 1200 750, center on
+windowrulev2 = float,         class:^(tui-app)$
+windowrulev2 = size 1200 750, class:^(tui-app)$
+windowrulev2 = center,        class:^(tui-app)$
 
 
 # Fix some dragging issues with XWayland (optional, keep commented if you want)
 #windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
 # Fix dragging issues with XWayland (modern syntax)
-windowrule = match:xwayland 1, match:class ^$, match:title ^$, no_initial_focus on
-windowrule = match:xwayland 1, match:class ^$, match:title ^$, float on
+windowrulev2 = nofocus, xwayland:1, class:^$, title:^$
+windowrulev2 = float,   xwayland:1, class:^$, title:^$
 
