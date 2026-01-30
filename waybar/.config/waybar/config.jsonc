@@ -2,7 +2,7 @@
 {
   "layer": "top",
   "position": "bottom",
-  "height": 30,
+  "height": 32,
   "spacing": 2,
 
   "modules-left": [
