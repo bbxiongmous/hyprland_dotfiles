@@ -1,75 +1,82 @@
-/* =================================================
-   Waybar – Nerd Font only / Calm / Compact / Stable
-   ================================================= */
-
 * {
-    font-family:
-        "JetBrainsMono Nerd Font Mono",
-        sans-serif;
-    font-size: 15px;
-    font-weight: 600; /* Semi-Bold */
+    font-family: 'JetBrainsMono Nerd Font', 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-size: 13px;
+    font-weight: 600;
 }
 
-/* Bar */
 window#waybar {
-    background-color: rgba(18, 20, 24, 0.55);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.92);
+    background-color: rgba(43, 48, 59, 0.5);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
 }
 
-/* Reset buttons */
-button {
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
     border: none;
-    box-shadow: none;
-    background: transparent;
 }
 
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
-    box-shadow: none;
-    background: transparent;
+    background: inherit;
+    box-shadow: inset 0 -3px #ffffff;
 }
 
-/* ---------------- Workspaces (tight) ---------------- */
-
-#workspaces {
-    margin: 0 2px;
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+    background-color: #a37800;
 }
 
 #workspaces button {
-    min-width: 0;
-    padding: 0 4px;
-    margin: 0;
-
-    color: rgba(255, 255, 255, 0.80);
-    border-radius: 7px;
-}
-
-#workspaces button > label {
-    padding: 0;
-    margin: 0;
+    padding: 0 5px;
+    background-color: transparent;
+    color: #ffffff;
 }
 
 #workspaces button:hover {
-    background-color: rgba(255, 255, 255, 0.06);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 #workspaces button.focused {
-    background-color: rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.96);
+    background-color: #64727D;
+    box-shadow: inset 0 -3px #ffffff;
 }
 
 #workspaces button.urgent {
-    background-color: rgba(235, 77, 75, 0.22);
-    color: rgba(255, 255, 255, 0.96);
+    background-color: #eb4d4b;
 }
 
-/* Window title */
-#window {
-    padding: 0 6px;
-    color: rgba(255, 255, 255, 0.88);
+#mode {
+    background-color: #64727D;
+    box-shadow: inset 0 -3px #ffffff;
 }
 
-/* Right modules */
 #clock,
 #battery,
 #cpu,
@@ -79,110 +86,242 @@ button:hover {
 #backlight,
 #network,
 #pulseaudio,
+#wireplumber,
+#custom-media,
 #tray,
+#mode,
 #idle_inhibitor,
+#scratchpad,
 #power-profiles-daemon,
-#language,
-#keyboard-state,
-#custom-power {
-    padding: 0 6px;
-    margin: 0 1px;
-    border-radius: 7px;
-    background-color: transparent;
-    color: rgba(255, 255, 255, 0.92);
-
-    /* Smooth hover interaction */
-    transition: background-color 120ms ease, color 120ms ease;
+#mpd {
+    padding: 0 10px;
+    color: #ffffff;
 }
 
-/* Hover (global) */
-#clock:hover,
-#battery:hover,
-#temperature:hover,
-#backlight:hover,
-#network:hover,
-#pulseaudio:hover,
-#tray:hover,
-#idle_inhibitor:hover,
-#power-profiles-daemon:hover,
-#language:hover,
-#keyboard-state:hover,
-#custom-power:hover {
-    background-color: rgba(255, 255, 255, 0.06);
+#window,
+#workspaces {
+    margin: 0 4px;
 }
 
-/* Hover (CPU / Memory / Disk) — stronger + “actionable” feel */
-#cpu:hover,
-#memory:hover,
-#disk:hover {
-    background-color: rgba(255, 255, 255, 0.10);
-    color: rgba(255, 255, 255, 0.98);
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
 }
 
-/* Optional: subtle pressed feedback (click) */
-#cpu:active,
-#memory:active,
-#disk:active {
-    background-color: rgba(255, 255, 255, 0.14);
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
 }
 
-/* ---------------- Semantic states ---------------- */
-
-/* Network disconnected */
-#network.disconnected {
-    background-color: rgba(245, 60, 60, 0.22);
-    color: rgba(255, 255, 255, 0.96);
+#clock {
+    background-color: #64727D;
 }
 
-/* Battery */
-#battery.charging,
-#battery.plugged {
-    background-color: rgba(38, 166, 91, 0.18);
+#battery {
+    background-color: #ffffff;
+    color: #000000;
 }
 
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: rgba(245, 60, 60, 0.22);
-    animation: none;
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
-/* Disk (matches your existing palette) */
-#disk.warning {
-    background-color: rgba(255, 255, 255, 0.10);
+#power-profiles-daemon {
+    padding-right: 15px;
 }
 
-#disk.critical {
-    background-color: rgba(245, 60, 60, 0.22);
+#power-profiles-daemon.performance {
+    background-color: #f53c3c;
+    color: #ffffff;
 }
 
-/* Audio muted (speaker or mic) */
+#power-profiles-daemon.balanced {
+    background-color: #2980b9;
+    color: #ffffff;
+}
+
+#power-profiles-daemon.power-saver {
+    background-color: #2ecc71;
+    color: #000000;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+    background-color: #2ecc71;
+    color: #000000;
+}
+
+#memory {
+    background-color: #9b59b6;
+}
+
+#disk {
+    background-color: #964B00;
+}
+
+#backlight {
+    background-color: #90b1b1;
+}
+
+#network {
+    background-color: #2980b9;
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+#pulseaudio {
+    background-color: #f1c40f;
+    color: #000000;
+}
+
 #pulseaudio.muted {
-    color: rgba(255, 255, 255, 0.70);
+    background-color: #90b1b1;
+    color: #2a5c45;
 }
 
-/* Temperature critical */
+#wireplumber {
+    background-color: #fff0f5;
+    color: #000000;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#temperature {
+    background-color: #f0932b;
+}
+
 #temperature.critical {
-    background-color: rgba(235, 77, 75, 0.22);
+    background-color: #eb4d4b;
 }
 
-/* Tray */
+#tray {
+    background-color: #2980b9;
+}
+
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: rgba(235, 77, 75, 0.22);
+    background-color: #eb4d4b;
 }
 
-/* Idle inhibitor */
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
 #idle_inhibitor.activated {
-    background-color: rgba(255, 255, 255, 0.10);
+    background-color: #ecf0f1;
+    color: #2d3436;
 }
 
-/* Keyboard lock indicator */
+#mpd {
+    background-color: #66cc99;
+    color: #2a5c45;
+}
+
+#mpd.disconnected {
+    background-color: #f53c3c;
+}
+
+#mpd.stopped {
+    background-color: #90b1b1;
+}
+
+#mpd.paused {
+    background-color: #51a37a;
+}
+
+#language {
+    background: #00b093;
+    color: #740864;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
 #keyboard-state > label.locked {
-    background-color: rgba(255, 255, 255, 0.10);
-    border-radius: 6px;
-    padding: 0 4px;
+    background: rgba(0, 0, 0, 0.2);
 }
 
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: white;
+}
+
+#privacy-item.screenshare {
+    background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+    background-color: #1ca000;
+}
+
+#privacy-item.audio-out {
+    background-color: #0069d4;
+}
