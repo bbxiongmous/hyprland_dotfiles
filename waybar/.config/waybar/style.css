@@ -1,35 +1,38 @@
 /* =========================================================
- * Waybar Low-Saturation + Unified Contrast (Hyprland)
- * - desaturated palette
- * - remove bottom border line
- * - UNIFIED TEXT CONTRAST: all modules use light text (@fg)
+ * Waybar – Low Saturation / Unified Contrast (Hyprland)
+ * FINAL VERSION
  * ========================================================= */
 
 * {
-    font-family: 'JetBrainsMono Nerd Font', 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-family: 'JetBrainsMono Nerd Font', 'Noto Sans Mono',
+                 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
     font-size: 14px;
     font-weight: 600;
 }
 
-/* ----- Palette ----- */
+/* ================= Palette ================= */
+
 @define-color bg            rgba(43, 48, 59, 0.50);
 @define-color fg            #e8eaed;
-
 @define-color line          rgba(255, 255, 255, 0.12);
 
-/* muted semantic colors (all designed for light text) */
-@define-color slate         #5e6a76;   /* clock / general slate */
-@define-color slate_hi      #667381;   /* focused */
-@define-color bluegray      #4f6b82;   /* network / tray / balanced */
-@define-color greengray     #5f7f6a;   /* cpu / power-saver-ish */
+/* semantic muted colors */
+@define-color slate         #5e6a76;   /* clock / base */
+@define-color slate_hi      #667381;   /* workspace active */
+@define-color bluegray      #4f6b82;   /* network / tray */
+@define-color greengray     #5f7f6a;   /* cpu */
 @define-color purplegray    #6e647c;   /* memory */
-@define-color ambergray     #8f7a45;   /* audio (muted amber) */
-@define-color orangegray    #8a6246;   /* temperature */
 @define-color browngray     #6f5242;   /* disk */
-@define-color tealgray      #5b7474;   /* backlight / muted states */
-@define-color redgray       #b14a4a;   /* urgent / critical / performance */
+@define-color orangegray    #8a6246;   /* temperature */
+@define-color tealgray      #5b7474;   /* muted / off */
+@define-color redgray       #b14a4a;   /* urgent / critical */
 @define-color okgreen       #3f7e62;   /* charging */
-@define-color neutral       #58606b;   /* neutral block for light modules */
+@define-color neutral       #58606b;   /* neutral blocks */
+
+/* audio: muted yellow (kept semantic, very low saturation) */
+@define-color audioyellow   #8f8652;
+
+/* ================= Waybar ================= */
 
 window#waybar {
     background-color: @bg;
@@ -43,31 +46,22 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/* App-specific overrides kept */
-window#waybar.termite {
-    background-color: rgba(63, 63, 63, 0.85);
-}
-
-window#waybar.chromium {
-    background-color: rgba(0, 0, 0, 0.70);
-    border: none;
-}
+/* ================= Buttons ================= */
 
 button {
-    box-shadow: inset 0 -2px transparent;
     border: none;
     border-radius: 0;
+    box-shadow: inset 0 -2px transparent;
 }
 
 button:hover {
-    background: inherit;
     box-shadow: inset 0 -2px @line;
 }
 
-/* ---------------- Workspaces ---------------- */
+/* ================= Workspaces ================= */
+
 #workspaces button {
     padding: 0 5px;
-    background-color: transparent;
     color: @fg;
 }
 
@@ -75,6 +69,7 @@ button:hover {
     background: rgba(0, 0, 0, 0.20);
 }
 
+#workspaces button.active,
 #workspaces button.focused {
     background-color: @slate_hi;
     box-shadow: inset 0 -2px @line;
@@ -82,16 +77,10 @@ button:hover {
 
 #workspaces button.urgent {
     background-color: @redgray;
-    color: @fg;
 }
 
-/* ACTIVE workspace */
-#workspaces button.active {
-    background-color: @slate_hi;
-    color: @fg;
-}
+/* ================= Common Modules ================= */
 
-/* ---------------- Common module padding + unified text ---------------- */
 #clock,
 #battery,
 #cpu,
@@ -108,42 +97,21 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
-#mpd,
-#language,
-#keyboard-state,
-#privacy-item {
+#mpd {
     padding: 0 10px;
-    color: @fg; /* unified contrast: ALWAYS light text */
+    color: @fg; /* unified contrast */
 }
 
-/* Keep your spacing rules */
-#window,
-#workspaces {
-    margin: 0 4px;
-}
+/* ================= Clock ================= */
 
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-/* ---------------- Mode ---------------- */
-#mode {
-    background-color: @slate_hi;
-    box-shadow: inset 0 -2px @line;
-}
-
-/* ---------------- Clock ---------------- */
 #clock {
     background-color: @slate;
 }
 
-/* ---------------- Battery (darkened for unified contrast) ---------------- */
+/* ================= Battery ================= */
+
 #battery {
-    background-color: @neutral; /* was bright white -> now neutral dark */
+    background-color: @neutral;
 }
 
 #battery.charging,
@@ -151,27 +119,11 @@ button:hover {
     background-color: @okgreen;
 }
 
-@keyframes blink {
-    to {
-        background-color: @neutral;
-        color: @fg;
-    }
-}
-
 #battery.critical:not(.charging) {
     background-color: @redgray;
-    color: @fg;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
 
-/* ---------------- Power Profiles ---------------- */
-#power-profiles-daemon {
-    padding-right: 15px;
-}
+/* ================= Power Profiles ================= */
 
 #power-profiles-daemon.performance {
     background-color: @redgray;
@@ -185,11 +137,8 @@ button:hover {
     background-color: @greengray;
 }
 
-label:focus {
-    background-color: rgba(0, 0, 0, 0.35);
-}
+/* ================= CPU / Memory / Disk ================= */
 
-/* ---------------- CPU / Memory / Disk ---------------- */
 #cpu {
     background-color: @greengray;
 }
@@ -202,12 +151,14 @@ label:focus {
     background-color: @browngray;
 }
 
-/* ---------------- Backlight ---------------- */
+/* ================= Backlight ================= */
+
 #backlight {
     background-color: @tealgray;
 }
 
-/* ---------------- Network ---------------- */
+/* ================= Network ================= */
+
 #network {
     background-color: @bluegray;
 }
@@ -216,43 +167,33 @@ label:focus {
     background-color: @redgray;
 }
 
-/* ---------------- Audio ---------------- */
+/* ================= Audio ================= */
+/* kept yellow, but muted and low-contrast */
+
 #pulseaudio {
-    background-color: @ambergray;
+    background-color: @audioyellow;
 }
 
 #pulseaudio:hover {
-    background-color: shade(@ambergray, 0.92);
+    background-color: shade(@audioyellow, 0.92);
 }
 
 #pulseaudio.muted {
     background-color: @tealgray;
 }
 
-/* ---------------- Wireplumber (darkened for unified contrast) ---------------- */
+/* ================= Wireplumber ================= */
+
 #wireplumber {
-    background-color: @neutral; /* was pale/pink -> now neutral dark */
+    background-color: @neutral;
 }
 
 #wireplumber.muted {
     background-color: @redgray;
 }
 
-/* ---------------- Media ---------------- */
-#custom-media {
-    background-color: #5b7c73; /* muted green-teal */
-    min-width: 100px;
-}
+/* ================= Temperature ================= */
 
-#custom-media.custom-spotify {
-    background-color: #5b7c73;
-}
-
-#custom-media.custom-vlc {
-    background-color: #7a654d; /* muted amber/brown */
-}
-
-/* ---------------- Temperature ---------------- */
 #temperature {
     background-color: @orangegray;
 }
@@ -261,101 +202,54 @@ label:focus {
     background-color: @redgray;
 }
 
-/* ---------------- Tray ---------------- */
+/* ================= Tray ================= */
+
 #tray {
     background-color: @bluegray;
 }
 
-/* Make tray icons less “neon” */
+/* dim tray icons slightly */
 #tray * {
     -gtk-icon-effect: dim;
     opacity: 0.92;
 }
 
 #tray > .needs-attention {
-    -gtk-icon-effect: highlight;
     background-color: @redgray;
     opacity: 1.0;
 }
 
-/* ---------------- Idle inhibitor ---------------- */
+/* ================= Idle Inhibitor ================= */
+
 #idle_inhibitor {
     background-color: rgba(45, 52, 54, 0.90);
 }
 
 #idle_inhibitor.activated {
     background-color: @neutral;
-    color: @fg;
 }
 
-/* ---------------- MPD ---------------- */
+/* ================= MPD ================= */
+
 #mpd {
     background-color: #5b7c73;
-}
-
-#mpd.disconnected {
-    background-color: @redgray;
 }
 
 #mpd.stopped {
     background-color: @tealgray;
 }
 
-#mpd.paused {
-    background-color: shade(#5b7c73, 0.92);
+#mpd.disconnected {
+    background-color: @redgray;
 }
 
-/* ---------------- Language / Keyboard state ---------------- */
-#language {
-    background: rgba(0, 176, 147, 0.22);
-    padding: 0 8px;
-    margin: 0 5px;
-    min-width: 16px;
-}
+/* ================= Scratchpad ================= */
 
-#keyboard-state {
-    background: rgba(151, 225, 173, 0.18);
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.20);
-}
-
-/* ---------------- Scratchpad ---------------- */
 #scratchpad {
     background: rgba(0, 0, 0, 0.20);
 }
 
 #scratchpad.empty {
     background-color: transparent;
-}
-
-/* ---------------- Privacy ---------------- */
-#privacy {
-    padding: 0;
-}
-
-#privacy-item {
-    padding: 0 8px;
-    color: @fg;
-}
-
-#privacy-item.screenshare {
-    background-color: #7a5b47; /* muted orange-brown */
-}
-
-#privacy-item.audio-in {
-    background-color: #55765f; /* muted green */
-}
-
-#privacy-item.audio-out {
-    background-color: @bluegray; /* muted blue-gray */
 }
 
