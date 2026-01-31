@@ -1,6 +1,6 @@
 /* =========================================================
  * Waybar – Low Saturation / Unified Contrast (Hyprland)
- * FINAL VERSION
+ * FINAL VERSION (audio color changed from yellow -> mauve gray)
  * ========================================================= */
 
 * {
@@ -29,8 +29,8 @@
 @define-color okgreen       #3f7e62;   /* charging */
 @define-color neutral       #58606b;   /* neutral blocks */
 
-/* audio: muted yellow (kept semantic, very low saturation) */
-@define-color audioyellow   #8f8652;
+/* audio: muted mauve-gray (no "warning" vibe) */
+@define-color audiomauve    #6b5b66;
 
 /* ================= Waybar ================= */
 
@@ -168,14 +168,14 @@ button:hover {
 }
 
 /* ================= Audio ================= */
-/* kept yellow, but muted and low-contrast */
+/* changed to muted mauve-gray */
 
 #pulseaudio {
-    background-color: @audioyellow;
+    background-color: @audiomauve;
 }
 
 #pulseaudio:hover {
-    background-color: shade(@audioyellow, 0.92);
+    background-color: shade(@audiomauve, 0.92);
 }
 
 #pulseaudio.muted {
