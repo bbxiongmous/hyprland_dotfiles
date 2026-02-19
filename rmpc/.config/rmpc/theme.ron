@@ -219,33 +219,42 @@
                     pane: Pane(Property(content: [(kind: Property(Status(InputBuffer())), style: (fg: "blue"), align: Left)]))
                 ),
                 (
-                    size: "6",
+                    // FIXED: Increased size from 6 to 35 to fit words
+                    size: "35",
                     pane: Pane(Property(content: [
                         (kind: Text("["), style: (fg: "blue", modifiers: "Bold")),
+                        
+                        // FIXED: Replaced "z" with "Repeat"
                         (kind: Property(Status(RepeatV2(
-                            on_label: "z",
-                            off_label: "z",
+                            on_label: "Repeat ",
+                            off_label: "Repeat ",
                             on_style: (fg: "yellow", modifiers: "Bold"),
                             off_style: (fg: "blue", modifiers: "Dim"),
                         )))),
+                        
+                        // FIXED: Replaced "x" with "Random"
                         (kind: Property(Status(RandomV2(
-                            on_label: "x",
-                            off_label: "x",
+                            on_label: "Random ",
+                            off_label: "Random ",
                             on_style: (fg: "yellow", modifiers: "Bold"),
                             off_style: (fg: "blue", modifiers: "Dim"),
                         )))),
+                        
+                        // FIXED: Replaced "c" with "Consume/Oneshot"
                         (kind: Property(Status(ConsumeV2(
-                            on_label: "c",
-                            off_label: "c",
-                            oneshot_label: "c",
+                            on_label: "Consume ",
+                            off_label: "Consume ",
+                            oneshot_label: "Oneshot ",
                             on_style: (fg: "yellow", modifiers: "Bold"),
                             off_style: (fg: "blue", modifiers: "Dim"),
                             oneshot_style: (fg: "red", modifiers: "Dim"),
                         )))),
+                        
+                        // FIXED: Replaced "v" with "Single/Oneshot"
                         (kind: Property(Status(SingleV2(
-                            on_label: "v",
-                            off_label: "v",
-                            oneshot_label: "v",
+                            on_label: "Single ",
+                            off_label: "Single ",
+                            oneshot_label: "Oneshot ",
                             on_style: (fg: "yellow", modifiers: "Bold"),
                             off_style: (fg: "blue", modifiers: "Dim"),
                             oneshot_style: (fg: "red", modifiers: "Bold"),
