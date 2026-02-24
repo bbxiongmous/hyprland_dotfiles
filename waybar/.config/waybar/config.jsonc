@@ -112,8 +112,12 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+      //  "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      //  "format-alt": "{:%Y-%m-%d}"
+    "interval": 60,
+    /* %a = Weekday, %m = Month, %d = Day, %H:%M = Time */
+    "format": "{:%m-%d  %a  %H:%M}", 
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
         "format": "{usage}% ",
