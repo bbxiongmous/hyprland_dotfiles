@@ -117,7 +117,7 @@
     "interval": 60,
     /* %a = Weekday, %m = Month, %d = Day, %H:%M = Time */
     "format": "{:%m-%d  %a  %H:%M}", 
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>"
     },
     "cpu": {
         "format": "{usage}% ",
