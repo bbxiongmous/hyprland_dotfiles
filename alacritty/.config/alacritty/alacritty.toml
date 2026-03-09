@@ -1,0 +1,17 @@
+[window]
+dimensions = { columns = 110, lines = 30 }
+padding = { x = 10, y = 10 }
+
+[font]
+# 注意：如果你的系统里显示的名称不同，请看下方的确认步骤
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+
+# JetBrains Mono 在 11.0 到 12.0 之间清晰度最高
+size = 12.0
+
+# 允许使用字体中的连字（Lutures），比如把 "==" 显示成一个长的等于号
+[font.glyph_offset]
+x = 0
+y = 0
